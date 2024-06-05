@@ -1,0 +1,39 @@
+<form [formGroup]="offerForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" type="text">
+    <div *ngIf="offerForm.get('name')?.invalid && (offerForm.get('name')?.dirty || offerForm.get('name')?.touched)">
+      <div *ngIf="offerForm.get('name')?.errors?.['required']">Name is required.</div>
+    </div>
+  
+    <label for="phone_number">Phone Number:</label>
+    <input id="phone_number" formControlName="phone_number" type="text">
+    <div *ngIf="offerForm.get('phone_number')?.invalid && (offerForm.get('phone_number')?.dirty || offerForm.get('phone_number')?.touched)">
+      <div *ngIf="offerForm.get('phone_number')?.errors?.['required']">Phone number is required.</div>
+      <div *ngIf="offerForm.get('phone_number')?.errors?.['pattern']">Phone number must be 10 digits.</div>
+    </div>
+  
+    <label for="address">Address:</label>
+    <input id="address" formControlName="address" type="text">
+    <div *ngIf="offerForm.get('address')?.invalid && (offerForm.get('address')?.dirty || offerForm.get('address')?.touched)">
+      <div *ngIf="offerForm.get('address')?.errors?.['required']">Address is required.</div>
+    </div>
+  
+    <label for="details">Details:</label>
+    <textarea id="details" formControlName="details"></textarea>
+    <div *ngIf="offerForm.get('details')?.invalid && (offerForm.get('details')?.dirty || offerForm.get('details')?.touched)">
+      <div *ngIf="offerForm.get('details')?.errors?.['required']">Details are required.</div>
+    </div>
+  
+    <label for="askingPrice">Asking Price:</label>
+    <input id="askingPrice" formControlName="askingPrice" type="number">
+    <div *ngIf="offerForm.get('askingPrice')?.invalid && (offerForm.get('askingPrice')?.dirty || offerForm.get('askingPrice')?.touched)">
+      <div *ngIf="offerForm.get('askingPrice')?.errors?.['required']">Asking price is required.</div>
+    </div>
+  
+    <label for="additionalComments">Additional Comments:</label>
+    <textarea id="additionalComments" formControlName="additionalComments"></textarea>
+  
+    <button type="submit" [disabled]="offerForm.invalid">Submit</button>
+  </form>
+  
+  

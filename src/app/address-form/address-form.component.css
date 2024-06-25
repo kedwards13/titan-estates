@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap'); /* Add this line to import the Poppins font */
+
+.full-width {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  input.mat-input-element {
+    border-bottom: 2px solid #ff9800; /* Orange line at the bottom */
+    border-radius: 0; /* No border radius */
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white;
+    border-radius: 25px; /* Make the input field round */
+    border: 2px solid #ff9800; /* Add an orange border */
+    padding: 0 14px; /* Adjust padding to ensure text is not cut off */
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-outline-thick,
+  .mat-form-field-appearance-fill .mat-form-field-outline-start,
+  .mat-form-field-appearance-fill .mat-form-field-outline-end,
+  .mat-form-field-appearance-fill .mat-form-field-outline-gap {
+    border-color: #ff9800;
+  }
+  
+  input::placeholder {
+    color: grey;
+  }
+  
+  input:focus::placeholder {
+    color: transparent;
+  }
+  
+  .next-button {
+    background: linear-gradient(to right, #ff9800 0%, #ff9800 50%, transparent 50%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.5s ease;
+    font-size: 18px; /* Increase font size */
+    padding: 15px 30px; /* Adjust padding */
+    color: #333; /* Set text color to a darker shade */
+    border: 2px solid #333; /* Add a darker shade for the border */
+    margin-top: 20px; /* Add some space at the top */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 50%; /* Adjust width */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    border-radius: 25px; /* Make button rounded */
+  }
+  
+  .next-button:hover {
+    background-position: left bottom;
+  }

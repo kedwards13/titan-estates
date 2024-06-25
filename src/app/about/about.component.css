@@ -1,0 +1,87 @@
+/* src/app/about/about.component.css */
+
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* About Section */
+.about, .what-we-do, .market-conditions, .why-sell, .commitment, .additional-resources {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.about, .what-we-do {
+  width: 60%;
+}
+
+.market-conditions, .why-sell, .commitment, .additional-resources {
+  width: 80%;
+}
+
+.about h2, .what-we-do h2, .market-conditions h2, .why-sell h2, .commitment h2, .additional-resources h2 {
+  font-size: 28px;
+  color: #38B6FF;
+  margin-bottom: 20px;
+}
+
+.about p, .what-we-do p, .commitment p, .additional-resources p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card-container-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 22px;
+  color: #434141;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card-container, .card-container-2x2 {
+    grid-template-columns: 1fr;
+  }
+
+  .about, .what-we-do, .market-conditions, .why-sell, .commitment, .additional-resources {
+    width: 90%;
+  }
+}

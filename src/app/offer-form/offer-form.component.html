@@ -1,39 +1,116 @@
-<form [formGroup]="offerForm" (ngSubmit)="onSubmit()">
-    <label for="name">Name:</label>
-    <input id="name" formControlName="name" type="text">
-    <div *ngIf="offerForm.get('name')?.invalid && (offerForm.get('name')?.dirty || offerForm.get('name')?.touched)">
-      <div *ngIf="offerForm.get('name')?.errors?.['required']">Name is required.</div>
-    </div>
-  
-    <label for="phone_number">Phone Number:</label>
-    <input id="phone_number" formControlName="phone_number" type="text">
-    <div *ngIf="offerForm.get('phone_number')?.invalid && (offerForm.get('phone_number')?.dirty || offerForm.get('phone_number')?.touched)">
-      <div *ngIf="offerForm.get('phone_number')?.errors?.['required']">Phone number is required.</div>
-      <div *ngIf="offerForm.get('phone_number')?.errors?.['pattern']">Phone number must be 10 digits.</div>
-    </div>
-  
-    <label for="address">Address:</label>
-    <input id="address" formControlName="address" type="text">
-    <div *ngIf="offerForm.get('address')?.invalid && (offerForm.get('address')?.dirty || offerForm.get('address')?.touched)">
-      <div *ngIf="offerForm.get('address')?.errors?.['required']">Address is required.</div>
-    </div>
-  
-    <label for="details">Details:</label>
-    <textarea id="details" formControlName="details"></textarea>
-    <div *ngIf="offerForm.get('details')?.invalid && (offerForm.get('details')?.dirty || offerForm.get('details')?.touched)">
-      <div *ngIf="offerForm.get('details')?.errors?.['required']">Details are required.</div>
-    </div>
-  
-    <label for="askingPrice">Asking Price:</label>
-    <input id="askingPrice" formControlName="askingPrice" type="number">
-    <div *ngIf="offerForm.get('askingPrice')?.invalid && (offerForm.get('askingPrice')?.dirty || offerForm.get('askingPrice')?.touched)">
-      <div *ngIf="offerForm.get('askingPrice')?.errors?.['required']">Asking price is required.</div>
-    </div>
-  
-    <label for="additionalComments">Additional Comments:</label>
-    <textarea id="additionalComments" formControlName="additionalComments"></textarea>
-  
-    <button type="submit" [disabled]="offerForm.invalid">Submit</button>
-  </form>
-  
-  
+<div *ngIf="currentStep === 1">
+  <app-address-form (addressSubmitted)="onAddressSubmitted($event)"></app-address-form>
+</div>
+
+<div *ngIf="currentStep === 2" class="popup-card">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Verify Address</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Please confirm if this is the correct address:</p>
+      <p>{{ address }}</p>
+      <div id="verify-map" class="map"></div> <!-- Ensure this div has the correct id for the map -->
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="verifyAddress(true)" class="verify-button yes-button">Yes</button>
+      <button mat-raised-button color="warn" (click)="verifyAddress(false)" class="verify-button no-button">No</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+
+<div *ngIf="currentStep === 3">
+  <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="propertyDetailsForm.get('propertyType')">
+      <form [formGroup]="propertyDetailsForm" (ngSubmit)="stepper.next()">
+        <ng-template matStepLabel>Property Type</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Type of Property</mat-label>
+          <mat-select formControlName="propertyType" required>
+            <mat-option value="single_family">Single Family</mat-option>
+            <mat-option value="multi_family">Multi Family</mat-option>
+            <mat-option value="condo">Condo</mat-option>
+            <mat-option value="townhouse">Townhouse</mat-option>
+            <mat-option value="other">Other</mat-option>
+          </mat-select>
+          <mat-error *ngIf="propertyDetailsForm.get('propertyType')?.invalid">Property type is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="propertyDetailsForm.invalid">Next</button>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="propertyDetailsForm.get('rooms')">
+      <form [formGroup]="propertyDetailsForm" (ngSubmit)="stepper.next()">
+        <ng-template matStepLabel>Number of Rooms</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Number of Rooms</mat-label>
+          <input matInput formControlName="rooms" type="number" required>
+          <mat-error *ngIf="propertyDetailsForm.get('rooms')?.invalid">Number of rooms is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="propertyDetailsForm.invalid">Next</button>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="propertyDetailsForm.get('bathrooms')">
+      <form [formGroup]="propertyDetailsForm" (ngSubmit)="stepper.next()">
+        <ng-template matStepLabel>Number of Bathrooms</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Number of Bathrooms</mat-label>
+          <input matInput formControlName="bathrooms" type="number" required>
+          <mat-error *ngIf="propertyDetailsForm.get('bathrooms')?.invalid">Number of bathrooms is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="propertyDetailsForm.invalid">Next</button>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="propertyDetailsForm.get('condition')">
+      <form [formGroup]="propertyDetailsForm" (ngSubmit)="stepper.next()">
+        <ng-template matStepLabel>Condition of the Property</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Condition of the Property</mat-label>
+          <mat-select formControlName="condition" required>
+            <mat-option value="excellent">Excellent</mat-option>
+            <mat-option value="good">Good</mat-option>
+            <mat-option value="fair">Fair</mat-option>
+            <mat-option value="poor">Poor</mat-option>
+          </mat-select>
+          <mat-error *ngIf="propertyDetailsForm.get('condition')?.invalid">Condition is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="propertyDetailsForm.invalid">Next</button>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="propertyDetailsForm.get('askingPrice')">
+      <form [formGroup]="propertyDetailsForm" (ngSubmit)="onDetailsSubmitted(propertyDetailsForm.value)">
+        <ng-template matStepLabel>Asking Price</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Asking Price</mat-label>
+          <input matInput formControlName="askingPrice" type="number" required>
+          <mat-error *ngIf="propertyDetailsForm.get('askingPrice')?.invalid">Asking price is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Additional Comments</mat-label>
+          <textarea matInput formControlName="additionalComments"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>When are you looking to sell?</mat-label>
+          <mat-select formControlName="sellTimeline" required>
+            <mat-option value="asap">As soon as possible</mat-option>
+            <mat-option value="this_month">This month</mat-option>
+            <mat-option value="1-2_months">1-2 months</mat-option>
+            <mat-option value="3+_months">3+ months</mat-option>
+          </mat-select>
+          <mat-error *ngIf="propertyDetailsForm.get('sellTimeline')?.invalid">This field is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="propertyDetailsForm.invalid">Submit</button>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+
+<div *ngIf="currentStep === 4">
+  <h2>Thank you!</h2>
+  <p>A team member will contact you shortly!</p>
+</div>

@@ -1,25 +1,141 @@
-nav {
-    background-color: #333;
-    color: white;
-    padding: 1em;
+/* src/app/navbar/navbar.component.css */
+
+/* Navbar container */
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+    position: relative;
+    z-index: 10;
   }
   
-  ul {
-    list-style: none;
-    padding: 0;
+  /* Logo container */
+  .logo-container {
+    display: flex;
+    align-items: center;
   }
   
-  li {
-    display: inline;
-    margin-right: 1em;
+  .logo {
+    height: 120px; /* Increased height */
+    margin-right: 15px; /* More space between logo and text */
   }
   
-  a {
-    color: white;
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px; /* Adjust for overlap effect */
+  }
+  
+  .logo-text .titan {
+    font-family: 'Canvas', sans-serif;
+    font-weight: bold;
+    color: #38B6FF;
+    font-size: 20pt; /* Increased font size */
+    line-height: 1;
+  }
+  
+  .logo-text .estates {
+    font-family: 'Canvas', sans-serif;
+    font-weight: bold;
+    color: #38B6FF;
+    font-size: 20pt; /* Increased font size */
+    line-height: 1;
+    margin-top: -10px; /* Adjust for overlap effect */
+  }
+  
+  /* Navbar links */
+  .navbar {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-start;
+    padding-right: 80px;
+
+  }
+  
+  .navbar a {
+    color: black;
     text-decoration: none;
+    font-family: 'Canva', sans-serif;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 25px; /* Make the hover effect rounded */
+    transition: all 0.3s ease; /* Smooth transition */
   }
   
-  a:hover {
-    text-decoration: underline;
+  .navbar a:hover {
+    text-decoration: none;
+    color: black;
+    border: 2px solid #FFA500; /* Light orange border */
+    background-color: #fff7e6; /* Light orange background */
+  }
+  
+  /* Hamburger menu */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+  }
+  
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .mobile-menu.open {
+    display: flex;
+    align-items: center; /* Center the content */
+    justify-content: center; /* Center the content */
+  }
+  
+  @media (max-width: 868px) {
+    .navbar {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
+    .logo-container {
+      justify-content: center; /* Center the logo and text */
+      flex-grow: 1;
+    }
+    .logo {
+      height: 120px; /* Adjust size for smaller screens */
+    }
+    .logo-text .titan,
+    .logo-text .estates {
+      font-size: 20pt; /* Adjust size for smaller screens */
+    }
+  }
+  
+  @media (min-width: 868px) {
+    .navbar-container {
+      justify-content: center; /* Center logo, text, and links */
+    }
+    .logo-container {
+      margin-right: auto; /* Move to the left */
+    }
+    .navbar {
+      justify-content: flex-end; /* Move links to the right */
+    }
   }
   

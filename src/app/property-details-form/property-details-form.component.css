@@ -1,0 +1,72 @@
+.full-width {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field.pill-border .mat-form-field-flex {
+    border-radius: 25px; /* Make the border radius pill-shaped */
+    border: 2px solid #ff9800; /* Orange outline color */
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+    padding: 0 15px; /* Add padding inside the input field */
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-outline-start,
+  .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 25px; /* Ensure the outline is pill-shaped */
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-underline {
+    display: none; /* Remove the underline */
+  }
+  
+  .mat-form-field-label {
+    font-size: 1.2rem;
+    color: #ff9800; /* Orange color for the label */
+  }
+  
+  mat-card {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  mat-card-actions button {
+    width: 100%;
+    border-radius: 25px; /* Apply pill-shaped border to the button */
+    padding: 10px 0;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+  }
+  
+  mat-card-actions button:hover {
+    background-color: #303f9f; /* Darker primary color */
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .next-button {
+    background: linear-gradient(to right, #ff9800 0%, #ff9800 50%, transparent 50%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 0.5s ease;
+  }
+  
+  .next-button:hover {
+    background-position: left bottom;
+  }
+  

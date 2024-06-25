@@ -1,0 +1,69 @@
+<form [formGroup]="propertyDetailsForm" (ngSubmit)="onDetailsSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Property Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Type of Property</mat-label>
+          <mat-select formControlName="propertyType" required>
+            <mat-option value="single_family">Single Family</mat-option>
+            <mat-option value="multi_family">Multi Family</mat-option>
+            <mat-option value="condo">Condo</mat-option>
+            <mat-option value="townhouse">Townhouse</mat-option>
+            <mat-option value="other">Other</mat-option>
+          </mat-select>
+          <mat-error *ngIf="propertyDetailsForm.get('propertyType')?.invalid">Property type is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Number of Rooms</mat-label>
+          <input matInput id="rooms" formControlName="rooms" type="number" required>
+          <mat-error *ngIf="propertyDetailsForm.get('rooms')?.invalid">Number of rooms is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Number of Bathrooms</mat-label>
+          <input matInput id="bathrooms" formControlName="bathrooms" type="number" required>
+          <mat-error *ngIf="propertyDetailsForm.get('bathrooms')?.invalid">Number of bathrooms is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Condition of the Property</mat-label>
+          <mat-select formControlName="condition" required>
+            <mat-option value="excellent">Excellent</mat-option>
+            <mat-option value="good">Good</mat-option>
+            <mat-option value="fair">Fair</mat-option>
+            <mat-option value="poor">Poor</mat-option>
+          </mat-select>
+          <mat-error *ngIf="propertyDetailsForm.get('condition')?.invalid">Condition is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Asking Price</mat-label>
+          <input matInput id="askingPrice" formControlName="askingPrice" type="number" required>
+          <mat-error *ngIf="propertyDetailsForm.get('askingPrice')?.invalid">Asking price is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>When are you looking to sell?</mat-label>
+          <mat-select formControlName="sellingTimeframe" required>
+            <mat-option value="asap">ASAP</mat-option>
+            <mat-option value="this_month">This month</mat-option>
+            <mat-option value="1_2_months">1-2 months</mat-option>
+            <mat-option value="3_plus_months">3+ months</mat-option>
+          </mat-select>
+          <mat-error *ngIf="propertyDetailsForm.get('sellingTimeframe')?.invalid">This field is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Additional Comments</mat-label>
+          <textarea matInput id="additionalComments" formControlName="additionalComments"></textarea>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="propertyDetailsForm.invalid" class="next-button">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  
